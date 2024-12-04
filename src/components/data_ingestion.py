@@ -5,6 +5,8 @@ from src.exception import CustomException
 from src.logger import logging
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
+from data_transformation import DataTransformation
+from data_transformation import DataTransformationConfig
 
 @dataclass
 class DataIngestionConfig:
@@ -21,7 +23,7 @@ class DataIngestion:
         logging.info("Entered the data ingestion component")
 
         try:
-            df= pd.read_csv("data/students_performance/StudentsPerformance.csv")
+            df= pd.read_csv(r"data/students_performance/StudentsPerformance.csv")
             logging.info("Read the dataset into a dataframe.")
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
@@ -35,12 +37,18 @@ class DataIngestion:
             test_set.to_csv(self.ingestion_config.test_data_path, index=False, header=True)
 
             logging.info("Data ingestion complete.")
+        
+            return (self.ingestion_config.train_data_path, self.ingestion_config.test_data_path)
 
         except Exception as e:
             raise CustomException(e, sys)
 
-        return (self.ingestion_config.train_data_path, self.ingestion_config.test_data_path)
-
 if __name__=="__main__":
-    obj = DataIngestion()
-    obj.initiate_data_ingestion()
+
+    data_ingestion_obj = DataIngestion()
+    train_data_path, test_data_path = data_ingestion_obj.initiate_data_ingestion()
+
+    data_transformation_obj = DataTransformation()
+    train_arr, test_arr, preprocessor_obj = data_transformation_obj.initiate_data_transformation(train_data_path, test_data_path)
+                
+
