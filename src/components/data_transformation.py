@@ -51,7 +51,9 @@ class DataTransformation:
 
             save_obj(self.data_transformation_config.preprocessor_obj_file, preprocessor)
 
-            return (train_arr, test_arr, preprocessor)        
+            logging.info("saved preprocessing object.")
+
+            return train_arr, test_arr       
 
         except Exception as e:
             raise CustomException(e, sys)
