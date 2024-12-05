@@ -27,29 +27,29 @@ class DataTransformation:
             test_df = pd.read_csv(test_path)
             logging.info("Read train and test data.")
 
-            # DataIngestion.initiate_data_ingestion()
-            train_preprocessor = ColumnTransformer(
+            input_train_df = train_df.drop(columns=["math score"])
+            target_train_series=train_df["math score"]
+
+            
+            input_test_df = test_df.drop(columns=["math score"])
+            target_test_series=test_df["math score"]
+
+            preprocessor = ColumnTransformer(
                 [
-                    ("ohe", OneHotEncoder(), train_df.select_dtypes("object").columns),
-                    ("stdscaler", StandardScaler(), train_df.select_dtypes("number").columns)
+                    ("ohe", OneHotEncoder(), input_train_df.select_dtypes("object").columns),
+                    ("stdscaler", StandardScaler(), input_train_df.select_dtypes("number").columns)
                 ]
             ) 
 
-            test_preprocessor = ColumnTransformer(
-                [
-                    ("ohe", OneHotEncoder(), test_df.select_dtypes("object").columns),
-                    ("stdscaler", StandardScaler(), test_df.select_dtypes("number").columns)
-                ]
-            ) 
-            train_arr = train_preprocessor.fit_transform(train_df)
-            test_arr = test_preprocessor.fit_transform(test_df)
+            train_arr = preprocessor.fit_transform(input_train_df)
+            test_arr = preprocessor.transform(input_test_df)
 
             logging.info("Columns transformation complete.")
 
-            save_obj(self.data_transformation_config.preprocessor_obj_file, train_preprocessor)
+            save_obj(self.data_transformation_config.preprocessor_obj_file, preprocessor)
 
-            return (train_arr, test_arr, train_preprocessor)
-        
+            return (train_arr, test_arr, preprocessor)        
+
         except Exception as e:
             raise CustomException(e, sys)
 

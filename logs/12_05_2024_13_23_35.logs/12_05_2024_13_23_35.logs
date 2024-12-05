@@ -1,0 +1,4 @@
+[2024-12-05 13:23:56,588] 23 root - INFO - Entered the data ingestion component
+[2024-12-05 13:23:56,794] 27 root - INFO - Read the dataset into a dataframe.
+[2024-12-05 13:23:56,872] 33 root - INFO - Splitting the dataset.
+[2024-12-05 13:23:57,060] 39 root - INFO - Data ingestion complete.
