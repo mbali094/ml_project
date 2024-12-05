@@ -41,8 +41,11 @@ class DataTransformation:
                 ]
             ) 
 
-            train_arr = preprocessor.fit_transform(input_train_df)
-            test_arr = preprocessor.transform(input_test_df)
+            transformed_train_input = preprocessor.fit_transform(input_train_df)
+            transformed_test_input = preprocessor.transform(input_test_df)
+
+            train_arr = np.c_[transformed_train_input, np.array(target_train_series)]
+            test_arr = np.c_[transformed_test_input, np.array(target_test_series)]
 
             logging.info("Columns transformation complete.")
 
