@@ -44,9 +44,35 @@ class ModelTrainer:
             'xgbregressor':XGBRegressor()
              }
 
-            model_report: dict = evaluate_model(X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, models =models)
+            params = {
+                'linearregression':{},
+                "decisiontreeregressor":{ "criterion": ["squared_error", "friedman_mse", "absolute_error", "poisson"],
+                                          "max_depth": range(8,32,8)
+                                        },
+                                    
+                "randomforestregressor":{ "n_estimators": range(8, 32, 8), 
+                                           "criterion":  ["squared_error", "absolute_error", "friedman_mse", "poisson"]
+                                        },
+                "xgbregressor":{"learning rate": [.1,.01,.05,.001],
+                                "n_estimators": range(6, 30, 6)
+                                },
+                "adaboostregressor": { "n_estimators": range(6,10, 2),
+                                        "learning rate": [0.01, 0.05, 0.1]
+                                     },
+
+                "catboostregressor":{"depth": range(6, 10, 2),
+                                     "learning_rate": [0.01, 0.05, 0.1]
+                 },          
+                "kneighborsregressor":{ "n_neighbors": range(5, 15, 5),
+                                        "weights": ["uniform", "distance"]
+
+                }
+
+               }
+
+            model_report: dict = evaluate_model(X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, models =models, param = params)
             
-            logging.info("Model training is over.")
+            # logging.info("Model training is over.")
 
             best_model_score = max(sorted(model_report.values()))
             
@@ -56,7 +82,7 @@ class ModelTrainer:
 
             if best_model_score < 0.6:
                 raise CustomException("No best model found.")
-            
+                      
             logging.info("Found a best model on both training and test set.")
 
             save_obj(file_path = self.model_trainer_config.trained_model_file_path, obj=best_model)
