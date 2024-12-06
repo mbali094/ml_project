@@ -1,0 +1,10 @@
+[2024-12-06 21:11:02,473] 25 root - INFO - Entered the data ingestion component
+[2024-12-06 21:11:02,520] 29 root - INFO - Read the dataset into a dataframe.
+[2024-12-06 21:11:02,535] 35 root - INFO - Splitting the dataset.
+[2024-12-06 21:11:02,629] 41 root - INFO - Data ingestion complete.
+[2024-12-06 21:11:02,693] 28 root - INFO - Read train and test data.
+[2024-12-06 21:11:02,943] 50 root - INFO - Columns transformation complete.
+[2024-12-06 21:11:02,975] 54 root - INFO - saved preprocessing object.
+[2024-12-06 21:11:02,975] 26 root - INFO - Splitting the data.
+[2024-12-06 21:11:02,990] 40 root - INFO - Entered model training.
+[2024-12-06 21:11:03,421] 86 root - INFO - Found a best model on both training and test set.

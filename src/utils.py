@@ -1,6 +1,6 @@
 import os
 import sys
-import pickle
+import dill
 import numpy as np
 import pandas as pd
 from pathlib import Path
@@ -15,8 +15,19 @@ def save_obj(file_path:Path, obj):
         os.makedirs(dir_path, exist_ok=True)
 
         with open(file_path, "wb") as file_obj:
-            pickle.dump(obj, file_obj)
+            dill.dump(obj, file_obj)
+
+            file_obj.close()
             
+    except Exception as e:
+        raise CustomException(e, sys)
+
+def load_object(file_path):
+
+    try:
+        with open(file_path, "rb") as obj:
+           return dill.load(obj)
+
     except Exception as e:
         raise CustomException(e, sys)
 

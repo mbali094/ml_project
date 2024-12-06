@@ -36,7 +36,7 @@ class DataTransformation:
 
             preprocessor = ColumnTransformer(
                 [
-                    ("ohe", OneHotEncoder(), input_train_df.select_dtypes("object").columns),
+                    ("ohe", OneHotEncoder(handle_unknown='ignore'), input_train_df.select_dtypes("object").columns),
                     ("stdscaler", StandardScaler(), input_train_df.select_dtypes("number").columns)
                 ]
             ) 

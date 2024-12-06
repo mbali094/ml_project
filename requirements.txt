@@ -5,5 +5,6 @@ matplotlib
 scikit-learn
 catboost
 xgboost
-pickle
-#-e .
+# pickle
+flask
+-e .
