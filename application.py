@@ -1,3 +1,4 @@
+# import libraries.
 import numpy as np
 import pandas as pd
 from flask import Flask, request,render_template
@@ -30,8 +31,7 @@ def predict_datapoint():
         )
 
         df = data.get_data_as_data_frame()
-        print(df)
-
+        
         predict_pipeline = PredictPipeline()
         results = predict_pipeline.predict(df)
 
