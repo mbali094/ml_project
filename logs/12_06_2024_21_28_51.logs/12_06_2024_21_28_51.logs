@@ -1,9 +1,0 @@
-[2024-12-06 21:28:52,168] 97 werkzeug - WARNING -  * Debugger is active!
-[2024-12-06 21:28:52,183] 97 werkzeug - INFO -  * Debugger PIN: 380-182-530
-[2024-12-06 21:28:56,657] 97 werkzeug - INFO - 127.0.0.1 - - [06/Dec/2024 21:28:56] "GET /predictdata HTTP/1.1" 200 -
-[2024-12-06 21:29:23,495] 97 werkzeug - INFO - 127.0.0.1 - - [06/Dec/2024 21:29:23] "[35m[1mPOST /predictdata HTTP/1.1[0m" 500 -
-[2024-12-06 21:29:24,312] 97 werkzeug - INFO - 127.0.0.1 - - [06/Dec/2024 21:29:24] "[36mGET /predictdata?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
-[2024-12-06 21:29:24,347] 97 werkzeug - INFO - 127.0.0.1 - - [06/Dec/2024 21:29:24] "[36mGET /predictdata?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
-[2024-12-06 21:29:24,521] 97 werkzeug - INFO - 127.0.0.1 - - [06/Dec/2024 21:29:24] "GET /predictdata?__debugger__=yes&cmd=resource&f=console.png&s=GSCTwasq5YBxF4zpA2y7 HTTP/1.1" 200 -
-[2024-12-06 21:29:24,553] 97 werkzeug - INFO - 127.0.0.1 - - [06/Dec/2024 21:29:24] "[36mGET /predictdata?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
-[2024-12-06 21:37:23,345] 97 werkzeug - INFO -  * Detected change in 'D:\\Khanyisile C. Jiyane\\data_science\\projects\\ml_project\\src\\components\\data_transformation.py', reloading
